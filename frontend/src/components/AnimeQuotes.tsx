@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { AnimeQuote } from "../api/api";
 
 export default function AnimeQuotes() {
   const [animeQuote, setAnimeQuote] = useState<string | null>(null);
   const handleAnime = () => {
-    setAnimeQuote(
-      "I am the hope of the universe. I am the answer to all living things that cry out for peace. I am protector of the innocent. I am the light in the darkness. I am truth. Ally to good! Nightmare to you! - Son Goku"
-    );
+    AnimeQuote()
+      .then((res) => {
+        console.log(res);
+        setAnimeQuote(res.data.quote);
+      })
+      .catch((error) => console.error(error));
   };
 
   return (

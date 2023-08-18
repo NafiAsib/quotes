@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { ProgrammingQuote } from "../api/api";
 
 export default function ProgrammingQuotes() {
   const [programmingQuote, setProgrammingQuote] = useState<string | null>(null);
-  const handleProgramming = () => {
-    setProgrammingQuote(
-      "The best way to predict the future is to invent it. - Alan Kay"
-    );
+  const handleProgramming = async () => {
+    ProgrammingQuote()
+      .then((res) => {
+        console.log(res);
+        setProgrammingQuote(res.data.quote);
+      })
+      .catch((error) => console.error(error));
   };
   return (
     <>
