@@ -6,7 +6,6 @@ export default function AnimeQuotes() {
   const handleAnime = () => {
     AnimeQuote()
       .then((res) => {
-        console.log(res);
         setAnimeQuote(res.data.quote);
       })
       .catch((error) => console.error(error));

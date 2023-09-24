@@ -6,7 +6,6 @@ export default function ProgrammingQuotes() {
   const handleProgramming = async () => {
     ProgrammingQuote()
       .then((res) => {
-        console.log(res);
         setProgrammingQuote(res.data.quote);
       })
       .catch((error) => console.error(error));
