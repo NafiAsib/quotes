@@ -1,0 +1,19 @@
+name: Publish docker images to ghcr
+
+on: push
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to registry
+        run: echo "${{ secrets.GH_TOKEN }}" | docker login ghcr.io -u nafiasib --password-stdin
+      - name: Build and push frontend
+        run: |
+          docker build ./frontend -t ghcr.io/nafiasib/quotes-frontend:latest
+          docker push ghcr.io/nafiasib/quotes-frontend:latest
+      - name: Build and push backend
+        run: |
+          docker build ./backend -t ghcr.io/nafiasib/quotes-backend:latest
+          docker push ghcr.io/nafiasib/quotes-backend:latest
